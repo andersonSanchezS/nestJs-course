@@ -19,14 +19,14 @@ import { TasksService } from './tasks.service'
 export class TasksController {
     constructor(private readonly tasksService: TasksService) {}
 
-    // @Get()
-    // getTasks(@Query() filterDto: GetTasksFilterDto): Task[] {
-    //     if (Object.keys(filterDto).length) {
-    //         return this.tasksService.getTaskWithFilters(filterDto)
-    //     } else {
-    //         return this.tasksService.getAllTasks()
-    //     }
-    // }
+    @Get()
+    getTasks(@Query() filterDto: GetTasksFilterDto): Promise<Task[]> {
+        if (Object.keys(filterDto).length) {
+            return this.tasksService.getTaskWithFilters(filterDto)
+        } else {
+            return this.tasksService.getAllTasks()
+        }
+    }
 
     @Get('/:id')
     getTaskById(@Param('id') id: string): Promise<Task> {
@@ -38,18 +38,16 @@ export class TasksController {
         return this.tasksService.createTask(createTaskDto)
     }
 
-    // @Delete('/:id')
-    // removeTask(@Param('id') id: string): string {
-    //     return this.tasksService.removeTask(id)
-    // }
+    @Delete('/:id')
+    removeTask(@Param('id') id: string): Promise<void> {
+        return this.tasksService.removeTask(id)
+    }
 
-    
-
-    // @Patch('/:id/status')
-    // updateTask(
-    //     @Param('id') id: string,
-    //     @Body() { status }: UpdateTaskStatusDto,
-    // ): Task {
-    //     return this.tasksService.updateTask(id, status)
-    // }
+    @Patch('/:id/status')
+    updateTask(
+        @Param('id') id: string,
+        @Body() { status }: UpdateTaskStatusDto,
+    ): Promise<Task> {
+        return this.tasksService.updateTask(id, status)
+    }
 }
