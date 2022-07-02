@@ -12,4 +12,11 @@ export class AuthController {
     ): Promise<void> {
         return this.authService.createUser(authCredentialsDto)
     }
+
+    @Post('login')
+    async login(
+        @Body() authCredentialsDto: AuthCredentialsDto,
+    ): Promise<{ accessToken: string }> {
+        return this.authService.login(authCredentialsDto)
+    }
 }
