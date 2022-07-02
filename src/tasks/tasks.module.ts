@@ -5,9 +5,10 @@ import { TasksController } from './tasks.controller'
 import { TasksService } from './tasks.service'
 import { AuthModule } from '../auth/auth.module'
 import { PassportModule } from '@nestjs/passport'
+import { ConfigModule } from '@nestjs/config'
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Task]), AuthModule],
+    imports: [ConfigModule, TypeOrmModule.forFeature([Task]), AuthModule],
     controllers: [TasksController],
     providers: [TasksService],
 })
