@@ -4,7 +4,6 @@ import { Task } from './task.entity'
 import { TasksController } from './tasks.controller'
 import { TasksService } from './tasks.service'
 import { AuthModule } from '../auth/auth.module'
-import { PassportModule } from '@nestjs/passport'
 import { ConfigModule } from '@nestjs/config'
 
 @Module({
